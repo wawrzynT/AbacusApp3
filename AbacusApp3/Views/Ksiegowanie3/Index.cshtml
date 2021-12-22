@@ -1,0 +1,126 @@
+﻿@model IEnumerable<AbacusApp3.Models.Ksiegowanie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <h1>Księgujemy</h1>
+    <p>
+        <a asp-action="Create"><i class="mdi mdi-new-box fa-2x"></i> | Utwórz nowy wpis</a>
+    </p>
+    
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Akcje</th>
+                        <th>
+                            Okres
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lokalizacja)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Konto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TerminPlatnosci)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KwotaWn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KwotaWplaty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.KwotaMa)
+                        </th>
+                        <th>
+                            Różnica
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.KsiegowanieId"><i class="mdi mdi-grease-pencil fa-2x text-success" title="Edycja"></i></a>
+                                |
+                                <a asp-action="Details" asp-route-id="@item.KsiegowanieId"><i class="mdi mdi-eye fa-2x text-warning" title="Szczegóły / podgląd"></i></a>
+                                |
+                                <a asp-action="Delete" asp-route-id="@item.KsiegowanieId"><i class="mdi mdi-delete fa-2x text-danger" title="Usuń"></i></a>
+
+                            </td>
+                            <th>
+                                @(item.TerminPlatnosci.Year + " " + item.TerminPlatnosci.Month)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lokalizacja.NazwaLok)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Konto.NazwaKonta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TerminPlatnosci)
+                            </td>
+                            <td style="text-align: right">
+                                @Html.DisplayFor(modelItem => item.KwotaWn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KwotaWplaty)
+                            </td>
+                            <td style="text-align: right">
+                                @Html.DisplayFor(modelItem => item.KwotaMa)
+                            </td>
+                            <td class="">
+                                @(item.KwotaWn - item.KwotaMa)
+                            </td>
+                            <td>
+                                @if (item.KwotaWn - item.KwotaMa == 0)
+                                {
+                                    <i class="mdi mdi-pocket text-success fa-2x" title="OK"></i>
+                                }
+                                else if (item.KwotaWn - item.KwotaMa < 0)
+                                {
+                                    <i class="mdi mdi-alert text-danger fa-2x" title="Coś nie gra, sprawdź to"></i>
+                                }
+                                else if (item.KwotaWn - item.KwotaMa > 0)
+                                {
+                                    <i class="mdi mdi-alert text-danger fa-2x" title="Coś nie gra, sprawdź to"></i>
+                                }
+                                else if (item.KwotaMa == null)
+                                {
+                                    <i class="mdi mdi-alert text-info fa-2x" title="Nie opłacona należność"></i>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div> }
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Witaj w aplikacji AbacusApp</h1>
+        <div class="flexParent">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calculator-fill flexItem" viewBox="0 0 16 16">
+                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5zm0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-1z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-check-fill flexItem" viewBox="0 0 16 16">
+                <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-cash-stack flexItem" viewBox="0 0 16 16">
+                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-graph-up flexItem" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </div>
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AbacusApp3.Models.Konto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Konta</h1>
+
+<div class="card">
+    <p>
+        <a asp-action="Create">Zdefiniuj konto</a>
+    </p>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Akcje</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NazwaKonta)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.KontoId"><i class="mdi mdi-grease-pencil fa-2x text-success" title="Edycja"></i></a>
+                        |
+                        <a asp-action="Details" asp-route-id="@item.KontoId"><i class="mdi mdi-eye fa-2x text-warning" title="Szczegóły / podgląd"></i></a>
+                        |
+                        <a asp-action="Delete" asp-route-id="@item.KontoId"><i class="mdi mdi-delete fa-2x text-danger" title="Usuń"></i></a>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NazwaKonta)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

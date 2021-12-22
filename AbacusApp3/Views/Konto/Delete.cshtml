@@ -1,0 +1,31 @@
+﻿@model AbacusApp3.Models.Konto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Konto</h2>
+
+<div class="card">
+    <h4>Usuwanie wiersza</h4>
+    <hr />
+
+        <div>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NazwaKonta)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NazwaKonta)
+                </dd>
+            </dl>
+            <hr />
+            <h5>Czy jesteś pewien, że chcesz usunąć wpis?</h5>
+            <hr />
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="KontoId" />
+                <input type="submit" value="Usuń" class="btn btn-danger" /> |
+                <a asp-action="Index">Powrót do listy</a>
+            </form>
+        </div>
+    </div>

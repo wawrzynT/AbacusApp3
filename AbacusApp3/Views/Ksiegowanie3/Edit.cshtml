@@ -1,0 +1,65 @@
+﻿@model AbacusApp3.Models.Ksiegowanie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h2>Księgowanie</h2>
+
+<h4>Edycja danych</h4>
+<hr />
+<div class="card">
+    <div class="row m-3">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="KsiegowanieId" />
+            <div class="d-flex flex-wrap flex-row">
+                <div class="form-group w-50">
+                    <label asp-for="LokalizacjaId" class="control-label"></label>
+                    <select asp-for="LokalizacjaId" class="form-control" asp-items="ViewBag.LokalizacjaId"></select>
+                    <span asp-validation-for="LokalizacjaId" class="text-danger"></span>
+                </div>
+                <div class="form-group w-50">
+                    <label asp-for="KontoId" class="control-label"></label>
+                    <select asp-for="KontoId" class="form-control" asp-items="ViewBag.KontoId"></select>
+                    <span asp-validation-for="KontoId" class="text-danger"></span>
+                </div>
+                <div class="form-group w-50">
+                    <label asp-for="TerminPlatnosci" class="control-label"></label>
+                    <input asp-for="TerminPlatnosci" class="form-control" />
+                    <span asp-validation-for="TerminPlatnosci" class="text-danger"></span>
+                </div>
+                <div class="form-group w-50">
+                    <label asp-for="KwotaWn" class="control-label"></label>
+                    <input asp-for="KwotaWn" class="form-control"  style="text-align:right;" />
+                    <span asp-validation-for="KwotaWn" class="text-danger"></span>
+                </div>
+                <div class="form-group w-50">
+                    <label asp-for="KwotaWplaty" class="control-label"></label>
+                    <input asp-for="KwotaWplaty" class="form-control" />
+                    <span asp-validation-for="KwotaWplaty" class="text-danger"></span>
+                </div>
+                <div class="form-group w-50">
+                    <label asp-for="KwotaMa" class="control-label"></label>
+                    <input asp-for="KwotaMa" class="form-control" style="text-align:right;" />
+                    <span asp-validation-for="KwotaMa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Zapisz" class="btn btn-primary" /> |
+                    <a asp-action="Index">Powrót do listy</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    </div>
+
+<div>
+    <a asp-action="Index"></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

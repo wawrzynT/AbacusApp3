@@ -1,0 +1,68 @@
+﻿@model AbacusApp3.Models.Ksiegowanie
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Księgowanie</h2>
+
+<h4>Utówrz nowy wiersz</h4>
+<hr />
+
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group d-flex flex-row flex-wrap m-3">
+                    <div class="form-group w-100">
+                        <label asp-for="LokalizacjaId" class="control-label"></label>
+                        <select asp-for="LokalizacjaId" class="form-control" asp-items="ViewBag.LokalizacjaId"></select>
+                    </div>
+                    <div class="form-group w-100">
+                        <label asp-for="KontoId" class="control-label"></label>
+                        <select asp-for="KontoId" class="form-control" asp-items="ViewBag.KontoId"></select>
+                    </div>
+                </div>
+
+                <div class="m-3">
+                    <div class="d-flex flex-row flex-nowrap">
+                        <div class="form-group">
+                            <label asp-for="TerminPlatnosci" class="control-label"></label>
+                            <input asp-for="TerminPlatnosci" class="form-control" />
+                            <span asp-validation-for="TerminPlatnosci" class="text-danger"></span>
+                        </div>
+                        <div class="form-group m-1">
+                            <label asp-for="KwotaWn" class="control-label"></label>
+                            <input asp-for="KwotaWn" class="form-control" />
+                            <span asp-validation-for="KwotaWn" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row flex-nowrap">
+                        <div class="form-group m-1">
+                            <label asp-for="KwotaWplaty" class="control-label"></label>
+                            <input asp-for="KwotaWplaty" class="form-control" />
+                            <span asp-validation-for="KwotaWplaty" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="KwotaMa" class="control-label"></label>
+                            <input asp-for="KwotaMa" class="form-control" />
+                            <span asp-validation-for="KwotaMa" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group m-3">
+                        <input type="submit" value="Utwórz" class="btn btn-primary" /> |
+                        <a asp-action="Index">Powrót do listy</a>
+                    </div>
+</form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

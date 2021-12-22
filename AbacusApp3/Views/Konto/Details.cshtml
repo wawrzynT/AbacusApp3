@@ -1,0 +1,26 @@
+﻿@model AbacusApp3.Models.Konto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Konto</h2>
+
+<div class="card">
+    <div>
+        <h4>Szczegóły</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NazwaKonta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NazwaKonta)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.KontoId">Edycja</a> |
+        <a asp-action="Index">Powrót do listy</a>
+    </div>
+</div>
